@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: %i[facebook]
-  devise :omniauthable, omniauth_providers: %i[github]
 
   has_many :book_lists
   has_many :books, :through => :book_lists
@@ -17,5 +16,5 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
     end
-  end  
+  end
 end

@@ -1,6 +1,9 @@
 <h1>Welcome To The Great Listby</h1>
 
-<%= link_to('Log in with Facebook!', user_facebook_omniauth_authorize_path) %>
-<%= link_to('Log in with Github!', user_github_omniauth_authorize_path) %>
-
-<%= link_to("Sign Up", new_user_registration_path) %>
+<% if @user %>
+  <h2> Welcome <%= @user.email %> </h2>
+<% else %>
+  <%= link_to('Log in with Facebook!', user_facebook_omniauth_authorize_path) %><br>
+  <%= link_to("Sign Up", new_user_registration_path) %>
+  <%= link_to("Sign In", new_user_session_path) %>
+<% end %>
