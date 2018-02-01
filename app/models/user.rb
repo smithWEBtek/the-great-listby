@@ -5,4 +5,17 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: %i[facebook]
   devise :omniauthable, omniauth_providers: %i[github]
+
+  has_many :book_lists
+  has_many :books, :through => :book_lists
+
+  has_many :reviews
+  has_many :books, :through => :reviews
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
+  end  
 end
