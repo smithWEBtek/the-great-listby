@@ -2,8 +2,9 @@
 
 <% if @user %>
   <h2> Welcome <%= @user.email %> </h2>
+  <%= link_to("Logout", destroy_user_session_path, method: :delete) %>
 <% else %>
   <%= link_to('Log in with Facebook!', user_facebook_omniauth_authorize_path) %><br>
-  <%= link_to("Sign Up", new_user_registration_path) %>
+  <%= link_to("Sign Up", new_user_registration_path) %><br>
   <%= link_to("Sign In", new_user_session_path) %>
 <% end %>
