@@ -11,4 +11,17 @@ class AuthorsController < ApplicationController
     @author = Author.find_by(id: params[:id])
   end
 
+  def create
+    @author = Author.create(author_params)
+    if @author.save
+      redirect_to author_path(@author)
+    else
+      render :new
+    end
+  end
+
+  def author_params
+    params.require(:author).permit(:name)
+  end
+
 end
