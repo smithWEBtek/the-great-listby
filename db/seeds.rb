@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+new_user = User.create(email: "test@gmail.com", password: "123456789")
+fiction = Genre.create(name: "fiction")
+fitzgerald = Author.create(name: "F.Scott Fitzgerald")
+great_gatsby = Book.create(title: "Great Gatsby", genre: fiction, author: fitzgerald)
+BookList.create(title: "summer", book: great_gatsby, user: new_user)
