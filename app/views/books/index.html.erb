@@ -3,8 +3,6 @@
 
 <ul>
 <% @books.each do |book| %>
-  <li>Title: <%= book.title %></li>
-  <li>Genre: <%= book.genre.name %></li>
-  <li>Author: <%= book.author.name %></li>
+  <li><%= link_to book.title, book_path(book)%>
 <% end %>
 </ul>

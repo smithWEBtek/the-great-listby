@@ -5,6 +5,8 @@ class Book < ApplicationRecord
   has_many :users, :through => :book_lists
   has_many :reviews
   has_many :users, :through => :reviews
+  validates :title, presence: true
+  validates :title, uniqueness: true
 
   def genre_name=(name)
     self.genre = Genre.find_or_create_by(name: name)
