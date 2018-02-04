@@ -24,4 +24,11 @@ class Book < ApplicationRecord
     self.author
   end
 
+  def book_lists_attributes=(book_list_attributes)
+    book_list_attributes.values.each do |book_list_attribute|
+      book_list = BookList.find_or_create_by(book_list_attribute)
+        self.book_lists << book_list
+      end
+    end
+
 end

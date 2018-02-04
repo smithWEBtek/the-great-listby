@@ -10,10 +10,18 @@
   <%= f.date_field :date_started %><br><br>
 
   <%= f.label :genre_name %>
-  <%= f.text_field :genre_name %>
+  <%= f.text_field :genre_name %><br><br>
 
   <%= f.label :author_name %>
-  <%= f.text_field :author_name %>
+  <%= f.text_field :author_name %><br><br>
+
+  Select a book list to add this book to:<br>
+  <%= f.collection_check_boxes :book_list_ids, BookList.all, :id, :title %><br><br>
+
+  or create a new book list:
+  <%= f.fields_for :book_lists, @book.book_lists.build do |book_list_fields| %>
+      <%= book_list_fields.text_field :title %>
+    <% end %>
 
   <%= f.submit %>
 <% end %>
