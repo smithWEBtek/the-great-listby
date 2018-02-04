@@ -1,4 +1,7 @@
-<h1><%= @book.title %></h1>
-<%= @book.blurb %>
-<%= @book.author.name %>
-<%= @book.genre.name %>
+<h1><strong><%= @book.title %></strong></h1>
+<h3>It's About:</h3>
+<p><%= @book.blurb %></p>
+<h3>Author:</h3>
+<p><%= @book.author.name %></p>
+<h3>Genre:</h3>
+<p><%= @book.genre.name %></p>

@@ -11,8 +11,15 @@ class Book < ApplicationRecord
   end
 
   def genre_name
-    binding.pry
-    self.genre.name
+    self.genre
+  end
+
+  def author_name=(name)
+    self.author = Author.find_or_create_by(name: name)
+  end
+
+  def author_name
+    self.author
   end
 
 end
