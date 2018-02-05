@@ -10,5 +10,11 @@
 <%= f.label :name %>
 <%= f.text_field :name %><br>
 
+Add books to this author:
+<%= f.fields_for :books, Book.new do |book_fields| %>
+  Title: <%= book_fields.text_field :title %>
+  Genre: <%= book_fields.text_field :genre %>
+<% end %>
+
 <%= f.submit %>
 <% end %>

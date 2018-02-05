@@ -5,6 +5,9 @@ class AuthorsController < ApplicationController
 
   def new
     @author = Author.new
+    3.times do
+      @author.books.build(title: "Sample Author")
+    end
   end
 
   def show
@@ -13,6 +16,7 @@ class AuthorsController < ApplicationController
 
   def create
     @author = Author.create(author_params)
+    raise params.inspect
     if @author.save
       redirect_to author_path(@author)
     else
@@ -21,7 +25,7 @@ class AuthorsController < ApplicationController
   end
 
   def author_params
-    params.require(:author).permit(:name)
+    params.require(:author).permit(:name, :book_ids => [], books_attributes: [:title, :genre])
   end
 
 end
