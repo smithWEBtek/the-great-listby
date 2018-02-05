@@ -6,10 +6,9 @@ class Author < ApplicationRecord
 
   def books_attributes=(book_attributes)
     book_attributes.values.each do |book_attribute|
-      genre = Genre.find_or_create_by(book_attribute[:name])
+      genre = Genre.find_or_create_by(name: book_attribute[:genre])
       book = Book.find_or_create_by(title: book_attribute[:title], genre: genre)
-      binding.pry
-      self.books.create(book)
+      self.books.build(title: book.title, genre: book.genre)
     end
   end
 end

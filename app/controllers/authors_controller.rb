@@ -6,7 +6,7 @@ class AuthorsController < ApplicationController
   def new
     @author = Author.new
     3.times do
-      @author.books.build(title: "Sample Author")
+      @author.books.build
     end
   end
 
@@ -16,7 +16,6 @@ class AuthorsController < ApplicationController
 
   def create
     @author = Author.create(author_params)
-    raise params.inspect
     if @author.save
       redirect_to author_path(@author)
     else
