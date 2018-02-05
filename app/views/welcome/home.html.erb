@@ -2,6 +2,8 @@
 
 <% if @user %>
   <h2> Welcome <%= @user.email %> </h2>
+  <%= link_to "Create A Book List", new_book_list_path %>
+  <%= link_to "Add A New Book", new_book_path %>
   <%= link_to("Logout", destroy_user_session_path, method: :delete) %>
 <% else %>
   <%= link_to('Log in with Facebook!', user_facebook_omniauth_authorize_path) %><br>

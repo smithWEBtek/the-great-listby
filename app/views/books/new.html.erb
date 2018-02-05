@@ -21,6 +21,7 @@
   or create a new book list:
   <%= f.fields_for :book_lists, @book.book_lists.build do |book_list_fields| %>
       <%= book_list_fields.text_field :title %>
+      <%= book_list_fields.hidden_field :user_id %>
     <% end %>
 
   <%= f.submit %>

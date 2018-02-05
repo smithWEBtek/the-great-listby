@@ -26,8 +26,10 @@ class Book < ApplicationRecord
 
   def book_lists_attributes=(book_list_attributes)
     book_list_attributes.values.each do |book_list_attribute|
-      book_list = BookList.find_or_create_by(book_list_attribute)
-        self.book_lists << book_list
+      binding.pry
+      user = User.find_by(id: book_list_attribute[:user_id])
+      book_list = BookList.find_or_create_by(name: book_list_attribute[:name], user: user)
+        self.book_lists.build(id: book_list.id)
       end
     end
 
