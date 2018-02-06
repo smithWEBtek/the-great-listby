@@ -6,25 +6,25 @@
 
 <h1>Add A New Book</h1>
 <%= form_for @book do |f| %>
-  <%= f.label :title %>
+  <%= f.label :title %><br>
   <%= f.text_field :title %><br><br>
 
-  <%= f.label :blurb %>
+  <%= f.label "What's it about?" %><br>
   <%= f.text_area :blurb %><br><br>
 
-  <%= f.label :date_started %>
+  <%= f.label :date_started %><br>
   <%= f.date_field :date_started %><br><br>
 
-  <%= f.label :genre_name %>
-  <%= f.text_field :genre_name, :value => @book.genre.name %><br><br>
+  <%= f.label "Genre" %><br>
+  <%= f.text_field :genre_name %><br><br>
 
-  <%= f.label :author_name %>
-  <%= f.text_field :author_name, :value =>@book.author.name %><br><br>
+  <%= f.label "Author" %><br>
+  <%= f.text_field :author_name %><br><br>
 
   Select a book list to add this book to:<br>
   <%= f.collection_check_boxes :book_list_ids, @user.book_lists.all, :id, :title %><br><br>
 
-  or create a new book list:
+  or create a new book list:<br>
   <%= f.fields_for :book_lists, @book.book_lists.build do |book_list_fields| %>
       <%= book_list_fields.text_field :title %>
       <%= book_list_fields.hidden_field :user_id, :value => @user.id %>
