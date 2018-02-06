@@ -1,0 +1,4 @@
+<h1>Your Current Book Lists</h1>
+<% @booklists.each do |book_list| %>
+  <%= link_to book_list.title, book_list_path(book_list) %>
+<% end %>
