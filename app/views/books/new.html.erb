@@ -26,8 +26,10 @@
 
   or create a new book list:<br>
   <%= f.fields_for :book_lists, @book.book_lists.build do |book_list_fields| %>
-      <%= book_list_fields.text_field :title %>
-      <%= book_list_fields.hidden_field :user_id, :value => @user.id %>
+      <%= book_list_fields.text_field :title %><br><br>
+Is the book 'in progress', 'complete' or 'to be read'?<br>
+      <%= book_list_fields.text_field :status %><br><br>
+      <%= book_list_fields.hidden_field :user_id, :value => @user.id %><br><br>
     <% end %>
 
   <%= f.submit %>
