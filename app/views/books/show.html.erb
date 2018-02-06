@@ -7,5 +7,5 @@
 <p><%= link_to @book.genre.name, genre_path(@book.genre) %></p>
 <h3>Book List:</h3>
 <% @book.book_lists.each do |book_list| %>
-  <%= book_list.title %>
+  <%= link_to book_list.title, book_list_path(book_list) %>
 <% end %>

@@ -5,6 +5,7 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @user = current_user
     3.times do
       @book.book_lists.build
     end
