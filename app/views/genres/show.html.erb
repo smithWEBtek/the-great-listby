@@ -1,6 +1,6 @@
 <h1><%= @genre.name %></h1>
 <h2>Books In This Genre:</h1>
 <% @genre.books.each do |book| %>
-  Title: <%= book.title %>
-  Author: <%= book.author %>
+  Title: <%= link_to book.title, book_path(book) %><br><br>
+  Author: <%= link_to book.author.name, author_path(book.author) %>
 <% end %>
