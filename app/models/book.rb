@@ -25,10 +25,23 @@ class Book < ApplicationRecord
 
   def book_lists_attributes=(book_list_attributes)
     book_list_attributes.values.each do |book_list_attribute|
-      user = User.find_by(id: book_list_attribute[:user_id])
-      book_list = BookList.find_or_create_by(title: book_list_attribute[:title], user: user, status: book_list_attribute[:status])
-      self.book_lists.build(title: book_list.title, user_id: book_list.user_id)
+      if book_list_attribute[:user_id].present? && book_list_attribute[:title].present?
+        user = User.find_by(id: book_list_attribute[:user_id])
+        book_list = BookList.find_or_create_by(title: book_list_attribute[:title], user: user)
+          if !self.book_lists.include?(book_list)
+            self.book_lists.build(title: book_list.title, user_id: book_list.user_id)
+          end
+        end
       end
     end
+
+  def book_list_ids=(ids)
+    ids.each do |id|
+      book_list = BookList.find_by(id: id)
+      if book_list
+        self.book_lists << book_list
+      end
+    end
+  end
 
 end
