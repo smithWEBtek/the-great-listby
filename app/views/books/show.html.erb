@@ -9,9 +9,5 @@
 <% @book.book_lists.each do |book_list| %>
   <%= link_to book_list.title, book_list_path(book_list) %>
 <% end %>
-<h3>Status:</h3>
-<% @book.book_lists.each do |book| %>
-  <p><%= book.status %></p>
-<% end %>
 <h3>Date Started:</h3>
-<p><%= @book.date_started %></p> 
+<p><%= @book.date_started %></p>
