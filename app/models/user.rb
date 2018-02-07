@@ -6,8 +6,6 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[facebook]
 
   has_many :book_lists
-  has_many :books, :through => :book_lists
-
   has_many :reviews
 
   def self.from_omniauth(auth)
