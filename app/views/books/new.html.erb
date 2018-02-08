@@ -28,7 +28,10 @@
   <%= f.fields_for :book_lists, @book.book_lists.build do |book_list_fields| %>
       <%= book_list_fields.text_field :title %><br><br>
       <%= book_list_fields.hidden_field :user_id, :value => @user.id %><br><br>
+      <%= book_list_fields.fields_for :book_lists_books do |blb_fields| %>
+      Status: <%= blb_fields.text_field :status %><br><br>
     <% end %>
+<% end %>
 
   <%= f.submit %>
 <% end %>

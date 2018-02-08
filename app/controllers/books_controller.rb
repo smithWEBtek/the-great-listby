@@ -6,6 +6,7 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
     @user = current_user
+    @book.book_lists_books.build
   end
 
   def create
@@ -23,6 +24,12 @@ class BooksController < ApplicationController
 
   private
     def book_params
-      params.require(:book).permit(:title, :blurb, :date_started, :date_completed, :genre_name, :author_name, :book_list_ids => [], book_lists_attributes: [:title, :user_id, :status])
+      params.require(:book).permit(:title,
+        :blurb, :date_started,
+        :date_completed,
+        :genre_name,
+        :author_name,
+        :book_list_ids => [],
+        book_lists_attributes: [:title, :user_id, book_lists_books: [:status]])
     end
 end
