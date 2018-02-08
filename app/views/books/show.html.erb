@@ -12,6 +12,4 @@
 <h3>Date Started:</h3>
 <p><%= @book.date_started %></p>
 <h3>Status:</h3>
-<% @book.book_lists_books.each do |blb| %>
-    <%= blb.status %>
-<% end %>
+<%= @book.status %>

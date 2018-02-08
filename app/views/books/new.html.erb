@@ -21,6 +21,9 @@
   <%= f.label "Author" %><br>
   <%= f.text_field :author_name %><br><br>
 
+  <%= f.label "Status" %><br>
+  <%= f.text_field :book_lists_books, :value => nil%><br><br>
+
   Select a book list to add this book to:<br>
   <%= f.collection_check_boxes :book_list_ids, @user.book_lists.all, :id, :title %><br><br>
 
@@ -28,10 +31,7 @@
   <%= f.fields_for :book_lists, @book.book_lists.build do |book_list_fields| %>
       <%= book_list_fields.text_field :title %><br><br>
       <%= book_list_fields.hidden_field :user_id, :value => @user.id %><br><br>
-      <%= book_list_fields.fields_for :book_lists_books do |blb_fields| %>
-      Status: <%= blb_fields.text_field :status %><br><br>
-    <% end %>
-<% end %>
+  <% end %>
 
   <%= f.submit %>
 <% end %>

@@ -25,19 +25,15 @@ class Book < ApplicationRecord
 
   def book_lists_attributes=(book_list_attributes)
     book_list_attributes.values.each do |book_list_attribute|
-      if book_list_attribute[:user_id].present? && book_list_attribute[:title].present? && book_list_attribute[:book_lists_books][:status].present?
+      if book_list_attribute[:user_id].present? && book_list_attribute[:title].present?
         user = User.find_by(id: book_list_attribute[:user_id])
         book_list = BookList.find_or_create_by(title: book_list_attribute[:title], user: user)
-        stauts = BookListsBook.find_by(book_list_id: book_list.id)
-        binding.pry
           if !self.book_lists.include?(book_list)
             self.book_lists.build(title: book_list.title, user_id: book_list.user_id)
-            self.status.update_all(status: book_list_attribute[:book_lists_books][:status])
           end
         end
       end
     end
-
 
   def book_list_ids=(ids)
     ids.each do |id|
@@ -46,6 +42,10 @@ class Book < ApplicationRecord
         self.book_lists << book_list
       end
     end
+  end
+
+  def status
+    self.book_lists_books.each{|book| book.status.to_s}
   end
 
 end

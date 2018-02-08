@@ -12,6 +12,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
+      @book.book_lists_books.update_all(status: params[:book][:book_lists_books])
       redirect_to book_path(@book)
     else
       render :new
@@ -30,6 +31,7 @@ class BooksController < ApplicationController
         :genre_name,
         :author_name,
         :book_list_ids => [],
-        book_lists_attributes: [:title, :user_id, book_lists_books: [:status]])
+        book_lists_attributes: [:title, :user_id],
+        :book_lists_books => [])
     end
 end
