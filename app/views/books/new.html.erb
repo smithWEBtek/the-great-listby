@@ -22,7 +22,7 @@
   <%= f.text_field :author_name %><br><br>
 
   <%= f.label "Status" %><br>
-  <%= f.text_field :book_lists_books, :value => nil%><br><br>
+  <%= f.select :book_lists_books, [["Currently reading"], ["Already read"], ["In progress"]]%><br><br>
 
   Select a book list to add this book to:<br>
   <%= f.collection_check_boxes :book_list_ids, @user.book_lists.all, :id, :title %><br><br>
