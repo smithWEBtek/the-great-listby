@@ -12,7 +12,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      @book.book_lists_books.update_all(status: params[:book][:book_lists_books])
+      @book.update_status(params[:book][:book_lists_books])
       redirect_to book_path(@book)
     else
       render :new

@@ -45,7 +45,11 @@ class Book < ApplicationRecord
   end
 
   def status
-    self.book_lists_books.each{|book| book.status.to_s}
+    self.book_lists_books.find_by(book_id: self.id).status
+  end
+
+  def update_status(status)
+    self.book_lists_books.update_all(status: status)
   end
 
 end
