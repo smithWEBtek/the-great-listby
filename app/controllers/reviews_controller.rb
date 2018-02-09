@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
+
   def index
-    @reviews = current_user.reviews
+    @book = Book.find_by(id: params[:book_id])
   end
 
   def new
@@ -12,7 +13,7 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.create(review_params)
     if @review.save
-      redirect_to book_review_path(@review)
+      redirect_to book_review_path(params[:book_id], @review.id)
     else
       render :new
     end
@@ -23,9 +24,8 @@ class ReviewsController < ApplicationController
     @book = Book.find_by(id: params[:book_id])
   end
 
-
   private
     def review_params
-      params.require(:review).permit(:title, :content, :book_id, :user_id)
+      params.require(:review).permit(:title, :content, :book_id, :user_id, :rating)
     end
 end

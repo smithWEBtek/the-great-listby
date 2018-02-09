@@ -1,6 +1,5 @@
-<h1>Reviews by <%= current_user.email %> </h1>
-
-<% @reviews.each do |review| %>
-  Title: <%= link_to review.title, book_review_path(review.book_id) %>
-  Book: <%= review.book.title %>
+<h1>Reviews for <%= link_to @book.title, book_path(@book) %></h1>
+<% @book.reviews.each do |review| %>
+  <%= review.title %>
+  <%= review.content %>
 <% end %>
