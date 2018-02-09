@@ -1,0 +1,17 @@
+<h1>Add A Review for <%= @book.title %></h1>
+
+<%= form_for([@book, @review]) do |review_fields| %>
+  <%= review_fields.label :title %>
+  <%= review_fields.text_field :title %><br><br>
+
+  <%= review_fields.label :content %>
+  <%= review_fields.text_area :content %><br><br>
+
+  <%= review_fields.label "Rating 1-5" %>
+  <%= review_fields.number_field :rating %><br><br>
+
+  <%= review_fields.hidden_field :user_id, :value => @user.id %>
+  <%= review_fields.hidden_field :book_id, :value => @book.id %>
+
+  <%= review_fields.submit %>
+<% end %>

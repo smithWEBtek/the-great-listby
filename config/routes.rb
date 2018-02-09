@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   #devise_for :users
 
   root 'welcome#home'
-  resources :reviews
-  resources :books
+
+  resources :books do
+    resources :reviews
+  end
+  
   resources :book_lists
   resources :authors
   resources :genres

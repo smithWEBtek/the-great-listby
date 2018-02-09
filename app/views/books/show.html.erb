@@ -9,9 +9,5 @@
 <% @book.book_lists.each do |book_list| %>
   <%= link_to book_list.title, book_list_path(book_list) %><br>
 <% end %>
-<h3>Date Started:</h3>
-<p><%= @book.date_started %></p>
-<h3>Status:</h3>
-<% @book.book_lists_books.each do |blb| %>
-  <%= blb.status %>
-<% end %>
+<h3>Add A Review:</h3>
+<%= link_to "Add A Review", new_book_review_path(@book.id) %>
