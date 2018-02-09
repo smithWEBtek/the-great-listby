@@ -10,6 +10,7 @@
     <%= link_to "All Books", books_path %><br><br>
     <%= link_to "All Authors", authors_path %><br><br>
     <%= link_to "All Genres", genres_path %><br><br><br><br>
+    <a href="/users/<%= @user.id %>/reviews">Your reviews<br><Br>
   <%= link_to("Logout", destroy_user_session_path, method: :delete) %>
 <% else %>
   <%= link_to('Log in with Facebook!', user_facebook_omniauth_authorize_path) %><br>

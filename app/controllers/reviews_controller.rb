@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review = Review.find_by(id: params[:review][:id])
+    @review = Review.find_by(id: params[:id])
     @book = Book.find_by(id: params[:book_id])
   end
 

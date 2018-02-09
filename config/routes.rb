@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :books do
     resources :reviews
   end
-  
+
+  get '/users/:id/reviews' => "users#reviews"
+
   resources :book_lists
   resources :authors
   resources :genres
