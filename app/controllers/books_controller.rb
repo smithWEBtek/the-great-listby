@@ -12,7 +12,8 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      @book.update_status(params[:book][:book_lists_books])
+      @book_lists_books = BookListsBook.find_by(id: @book.book_lists_books.ids)
+      @book_lists_books.update_status(params[:book][:book_lists_books])
       redirect_to book_path(@book)
     else
       render :new
