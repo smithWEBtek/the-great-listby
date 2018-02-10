@@ -24,6 +24,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find_by(id: params[:id])
+    @booklists = @book.book_lists.where(user_id: current_user.id)
   end
 
   def edit
