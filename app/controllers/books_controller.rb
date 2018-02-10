@@ -29,10 +29,16 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find_by(id: params[:id])
-    @booklist = BookList.find_by(id: params[:id])
+    @booklist = BookList.find_by(id: params[:book_list_id])
   end
 
   def update
+    @book = Book.find_by(id: params[:id])
+    @book.update(book_params)
+    @booklist = BookList.find_by(id: params[:book][:book_list_id])
+    @book_features = BookFeature.find_by(book_id: @book.id, book_list_id: @booklist.id)
+    @book_features.update_status(params[:book][:book_features])
+    redirect_to book_list_path(@booklist)
   end
 
   private

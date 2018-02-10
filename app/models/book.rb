@@ -12,7 +12,9 @@ class Book < ApplicationRecord
   end
 
   def genre_name
-    self.genre
+    if self.genre
+      self.genre.name
+    end
   end
 
   def author_name=(name)
@@ -20,7 +22,9 @@ class Book < ApplicationRecord
   end
 
   def author_name
-    self.author
+    if self.author
+      self.author.name
+    end
   end
 
   def book_list_id=(id)
