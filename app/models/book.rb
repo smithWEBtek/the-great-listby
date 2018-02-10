@@ -30,7 +30,9 @@ class Book < ApplicationRecord
   def book_list_id=(id)
     book_list = BookList.find_by(id: id)
     if book_list
-      self.book_lists << book_list
+      if !self.book_lists.include?(book_list)
+        self.book_lists << book_list
+      end
     end
   end
 
