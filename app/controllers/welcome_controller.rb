@@ -8,7 +8,8 @@ class WelcomeController < ApplicationController
     end
       @user.save if @user
       current_user = @user
-  end 
+      @booklists = current_user.book_lists
+  end
 
 
 end
