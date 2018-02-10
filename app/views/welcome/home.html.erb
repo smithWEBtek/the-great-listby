@@ -2,9 +2,12 @@
 
 <% if @user %>
   <h2> Welcome <%= @user.email %> </h2>
-  <h2> Your Book Lists </h2>
-  <% @booklists.each do |book_list| %>
-    <li><%= link_to book_list.title, book_list_path(book_list) %></li>
+
+  <% if @user.book_lists.present? %>
+    <h2> Your Book Lists </h2>
+    <% @user.book_lists.each do |book_list| %>
+      <li><%= link_to book_list.title, book_list_path(book_list) %></li>
+    <% end %>
   <% end %>
 
   <h3>Get started by creating a new book list:</h3>
