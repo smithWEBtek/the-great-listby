@@ -1,7 +1,7 @@
 class BookList < ApplicationRecord
   belongs_to :user
-  has_many :book_lists_books
-  has_many :books, :through => :book_lists_books
+  has_many :book_features
+  has_many :books, :through => :book_features
 
   def books_attributes=(book_attributes)
     book_attributes.values.each do |book_attribute|

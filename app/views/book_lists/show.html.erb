@@ -1,5 +1,5 @@
 <h1><%= @booklist.title %></h1>
 <% @booklist.books.each do |book| %>
   <li><%= link_to book.title, book_path(book) %></li>
-  <li><%= book.book_lists_books.find_by(book_id: book.id, book_list_id: @booklist.id).status %>
+  <li><%= book.book_features.find_by(book_id: book.id, book_list_id: @booklist.id).status %>
 <% end %>
