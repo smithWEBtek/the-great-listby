@@ -21,7 +21,7 @@ Create a book to add to this book list:<br><br>
 <% end %>
 
 <%= f.label "Status" %><br>
-<%= f.select :book_features, [["Currently reading"], ["Already read"], ["In progress"]]%><br><br>
+<%= f.select :book_features, [["Currently reading"], ["Already read"], ["Want to read"]]%><br><br>
 
 <%= f.hidden_field :user_id, :value => @user.id %>
 <%= f.submit %>

@@ -19,7 +19,7 @@
   <%= f.text_field :author_name %><br><br>
 
   <%= f.label "Status" %><br>
-  <%= f.select :book_features, [["Currently reading"], ["Already read"], ["In progress"]]%><br><br>
+  <%= f.select :book_features, [["Currently reading"], ["Already read"], ["Want to read"]]%><br><br>
 
   <%= f.hidden_field :book_list_id, :value => @booklist.id %>
 
