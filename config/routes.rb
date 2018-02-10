@@ -9,7 +9,10 @@ Rails.application.routes.draw do
 
   get '/users/:id/reviews' => "users#reviews"
 
-  resources :book_lists
+  resources :book_lists do
+    resources :books
+  end
+
   resources :authors
   resources :genres
 
