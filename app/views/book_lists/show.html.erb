@@ -1,5 +1,12 @@
 <h1><%= @booklist.title %></h1>
+<strong><%= link_to "Add a book to this booklist", new_book_list_book_path(@booklist) %></strong>
 <% @booklist.books.each do |book| %>
-  <li><%= link_to book.title, book_path(book) %></li>
-  <li><%= book.book_features.find_by(book_id: book.id, book_list_id: @booklist.id).status %>
+  <h3> Title: <%= link_to book.title, book_path(book) %><br></h3>
+  Author: <%= link_to book.author.name, author_path(book.author) %><br>
+  Genre: <%= link_to book.genre.name, genre_path(book.genre) %><br>
+  Status: <%= book.book_features.find_by(book_id: book.id, book_list_id: @booklist.id).status %><br><br>
+  <strong><%= link_to "Update Status", edit_book_list_path(@booklist.id) %><br>
+  <%= link_to "Delete from booklist", book_path(book.id), :method => "delete" %></strong>
 <% end %>
+<br><br><br><br>
+<%= link_to "Delete this entire booklist", book_list_path(@booklist.id) %>
