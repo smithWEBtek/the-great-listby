@@ -4,7 +4,7 @@
   <% end %>
 <% end %>
 
-<h1>Add A New Book</h1>
+<h1>Add A New Book To "<%= @booklist.title %>"</h1>
 <%= form_for @book do |f| %>
   <%= f.label :title %><br>
   <%= f.text_field :title %><br><br>
@@ -21,14 +21,7 @@
   <%= f.label "Status" %><br>
   <%= f.select :book_features, [["Currently reading"], ["Already read"], ["In progress"]]%><br><br>
 
-  Select a book list to add this book to:<br>
-  <%= f.collection_check_boxes :book_list_ids, @user.book_lists.all, :id, :title %><br><br>
-
-  or create a new book list:<br>
-  <%= f.fields_for :book_lists, @book.book_lists.build do |book_list_fields| %>
-      <%= book_list_fields.text_field :title %><br><br>
-      <%= book_list_fields.hidden_field :user_id, :value => @user.id %><br><br>
-  <% end %>
+  <%= f.hidden_field :book_list_id, :value => @booklist.id %>
 
   <%= f.submit %>
 <% end %>
