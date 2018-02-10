@@ -2,10 +2,14 @@
 
 <% if @user %>
   <h2> Welcome <%= @user.email %> </h2>
+  <h2> Your Book Lists </h2>
+  <% @booklists.each do |book_list| %>
+    <li><%= link_to book_list.title, book_list_path(book_list) %></li>
+  <% end %>
+
   <h3>Get started by creating a new book list:</h3>
   <%= link_to "New Book List", new_book_list_path %><br>
-  <h3>or add a new book to your collection:</h3>
-  <%= link_to "New Book", new_book_path %><br>
+
   <h3>You Can also view all of the books, authors & genres in the Great Listby:</h3>
     <%= link_to "All Books", books_path %><br><br>
     <%= link_to "All Authors", authors_path %><br><br>
