@@ -1,0 +1,11 @@
+<h1>Edit <%= @book.title %></h1>
+Title: <%= @book.title %> <br>
+Blurb: <%= @book.blurb %> <br>
+Genre: <%= @book.genre.name %> <br>
+<%= form_for @book do |f| %>
+
+  <%= f.label "Status" %><br>
+  <%= f.select :book_features, [["Currently reading"], ["Already read"], ["In progress"]]%><br><br>
+
+  <%= f.submit %>
+<% end %>

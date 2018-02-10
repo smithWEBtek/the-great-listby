@@ -1,0 +1,28 @@
+<% if @booklist.errors.any? %>
+  <%= @booklist.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+<% end %>
+
+<h1>Edit <%= @booklist.title %></h1>
+<%= form_for @booklist do |f| %>
+
+<%= f.label :title %><br><br>
+<%= f.text_field :title %><br><br>
+
+Select a book to add to this book list:<br><br>
+<%= f.collection_check_boxes :book_ids, Book.all, :id, :title %><br><br>
+
+Create a book to add to this book list:<br><br>
+<%= f.fields_for :books, @booklist.books.build do |book_fields| %>
+  Title: <%= book_fields.text_field :title %><br><br>
+  Author: <%= book_fields.text_field :author %><br><br>
+  Genre: <%= book_fields.text_field :genre %><br><br>
+<% end %>
+
+<%= f.label "Status" %><br>
+<%= f.select :book_features, [["Currently reading"], ["Already read"], ["In progress"]]%><br><br>
+
+<%= f.hidden_field :user_id, :value => @user.id %>
+<%= f.submit %>
+<% end %>
