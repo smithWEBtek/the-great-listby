@@ -13,9 +13,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      @booklist = BookList.find_by(id: params[:book][:book_list_id])
-      @book_features = BookFeature.find_by(id: @book.book_features.ids)
-      @book_features.update_status(params[:book][:book_features])
+      update_book_features
       redirect_to book_list_path(@booklist)
     else
       render :new
@@ -35,9 +33,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find_by(id: params[:id])
     @book.update(book_params)
-    @booklist = BookList.find_by(id: params[:book][:book_list_id])
-    @book_features = BookFeature.find_by(book_id: @book.id, book_list_id: @booklist.id)
-    @book_features.update_status(params[:book][:book_features])
+    update_book_features
     redirect_to book_list_path(@booklist)
   end
 
@@ -50,10 +46,13 @@ class BooksController < ApplicationController
 
   private
     def book_params
-      params.require(:book).permit(:book_list_id, :title,
-        :blurb,
-        :genre_name,
-        :author_name,
-        :book_features => [])
+      params.require(:book).permit(:book_list_id, :title, :blurb, :genre_name, :author_name, :book_features => [])
     end
+
+    def update_book_features
+      @booklist = BookList.find_by(id: params[:book][:book_list_id])
+      @book_features = BookFeature.find_by(book_id: @book.id, book_list_id: @booklist.id)
+      @book_features.update_status(params[:book][:book_features])
+    end
+
 end
