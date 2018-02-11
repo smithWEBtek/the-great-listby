@@ -7,6 +7,16 @@ class Book < ApplicationRecord
   has_many :users, :through => :reviews
   validates :title, presence: true
 
+  scope :highest_rated_books, -> { joins(:reviews).where('reviews.rating > 3') }
+  scope :lowest_rated_books, -> { joins(:reviews).where('reviews.rating < 3') }
+  scope :by_user, ->(user) { joins(:reviews).where('reviews.user_id = ?', user.id ) }
+
+  #Book.highest_rated_books.by_user(@user).titles
+
+  def self.titles
+    pluck(:title)
+  end
+
   def genre_name=(name)
     self.genre = Genre.find_or_create_by(name: name)
   end
