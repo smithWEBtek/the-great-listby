@@ -1,7 +1,17 @@
-<h1>All Reviews You've Written</h1>
+<h1>Reviews By You</h1>
 <% @user.reviews.each do |review| %>
-  <h3>Book: </h3> <%= review.book.title %>
-  <h3>Title:</h3> <%= review.title %><br><br>
-  <h3>Content:</h3>
-  <p> <%= review.content %></p>
+  <strong>Book:</strong> <%= link_to review.book.title, book_path(review.book) %> ||
+  <strong>Title: </strong>"<%= review.title %>"</u></s> ||
+  <strong>Stars: </strong><%= review.rating %><br><br>
+  <strong>Content:</strong> <%= review.content %><br><br><br>
+<% end %>
+
+<h2>Your highest rated book:</h1>
+  <% Book.highest_rated_books.by_user(@user).titles.each do |title| %>
+    <%= title if title %>
+  <% end %>
+
+<h2>Your lowest rated book:</h1>
+  <% Book.lowest_rated_books.by_user(@user).titles.each do |title| %>
+  <%= link_to title, book_path(Book.find_by(title: title)) %>
 <% end %>
