@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get '/users/:id/reviews' => "users#reviews"
 
+  get '/users/:id/unreadbooks' => "users#unread"
+
   resources :book_lists do
     resources :books
   end

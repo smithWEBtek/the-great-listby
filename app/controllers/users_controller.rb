@@ -5,4 +5,8 @@ class UsersController < ApplicationController
     render 'users/reviews'
   end
 
+  def unread
+    @unread_books = User.books.unread
+  end
+
 end

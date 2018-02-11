@@ -26,10 +26,17 @@ class User < ApplicationRecord
     @books
   end
 
-  def unread_books
-    self.books.each do |book|
-      book.book_features.find_by(book_id: book.id, book_list_id: @booklist.id).status
+  def books_by_status(status)
+    books = self.books
+    array = []
+    books.each do |book|
+      book.book_features.each do |book_feature|
+        if book_feature.status == "#{status}"
+          array << Book.find_by(id: book_feature.book_id)
+        end
+      end
+    end
+    array
   end
-end
 
 end
