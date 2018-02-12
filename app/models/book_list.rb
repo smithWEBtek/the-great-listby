@@ -20,7 +20,9 @@ class BookList < ApplicationRecord
     ids.each do |id|
     book = Book.find_by(id: id)
       if book
-        self.books << book
+        if !self.books.include?(book)
+          self.books << book
+        end
       end
     end
   end
