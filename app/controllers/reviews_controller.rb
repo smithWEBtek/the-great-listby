@@ -22,6 +22,16 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find_by(id: params[:id])
     @book = Book.find_by(id: params[:book_id])
+    @user = current_user
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private
