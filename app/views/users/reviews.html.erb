@@ -8,7 +8,7 @@
 
 <h2>Your highest rated book:</h1>
   <% Book.highest_rated_books.by_user(@user).titles.each do |title| %>
-    <%= title if title %>
+    <%= link_to title, book_path(Book.find_by(title: title)) %>
   <% end %>
 
 <h2>Your lowest rated book:</h1>
