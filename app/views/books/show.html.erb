@@ -11,7 +11,7 @@
 <% end %>
 <h3>Reviews:</h3>
 <% @book.reviews.each do |review| %>
-  <%= link_to review.title, book_review_path(@book.id) %>
+  <%= link_to review.title, book_review_path(@book.id, review.id) %>
 <% end %>
 <h3>Add A Review:</h3>
 <%= link_to "Add A Review", new_book_review_path(@book.id) %>
