@@ -11,7 +11,7 @@ class Book < ApplicationRecord
   scope :by_user, ->(user) { joins(:reviews).where('reviews.user_id = ?', user.id ) }
 
   def genre_name=(name)
-    self.genre = Genre.find_or_create_by(name: name)
+    self.genre = Genre.find_or_create_by(name: name.titleize)
   end
 
   def genre_name
@@ -21,7 +21,7 @@ class Book < ApplicationRecord
   end
 
   def author_name=(name)
-    self.author = Author.find_or_create_by(name: name)
+    self.author = Author.find_or_create_by(name: name.titleize)
   end
 
   def author_name

@@ -28,7 +28,10 @@ class User < ApplicationRecord
     self.books.each do |book|
       book.book_features.each do |book_feature|
         if book_feature.status == "#{status}"
-          books_by_status << Book.find_by(id: book_feature.book_id)
+          new_book = Book.find_by(id: book_feature.book_id)
+          if !books_by_status.include?(new_book)
+            books_by_status << new_book
+          end
         end
       end
     end

@@ -7,9 +7,9 @@ class BookList < ApplicationRecord
   def books_attributes=(book_attributes)
     book_attributes.values.each do |book_attribute|
     if book_attribute[:title].present? && book_attribute[:genre].present? && book_attribute[:author].present?
-        genre = Genre.find_or_create_by(name: book_attribute[:genre])
-        author = Author.find_or_create_by(name: book_attribute[:author])
-        book = Book.find_or_create_by(title: book_attribute[:title], genre: genre, author: author, blurb: book_attribute[:blurb])
+        genre = Genre.find_or_create_by(name: book_attribute[:genre].titleize)
+        author = Author.find_or_create_by(name: book_attribute[:author].titleize)
+        book = Book.find_or_create_by(title: book_attribute[:title].titleize, genre: genre, author: author, blurb: book_attribute[:blurb])
           if !self.books.include?(book)
             self.books << book
           end
