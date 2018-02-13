@@ -1,39 +1,6 @@
-<h1>Welcome To The Great Listby</h1>
-
 <% if @user %>
-  <h2> Welcome <%= @user.email %> </h2>
-
-  <% if @user.book_lists.present? %>
-    <h2> Your Book Lists </h2>
-    <% @user.book_lists.each do |book_list| %>
-      <li><%= link_to book_list.title, book_list_path(book_list) %></li>
-    <% end %>
-  <% end %>
-
-  <h3>Get started by creating a new book list:</h3>
-  <%= link_to "New Book List", new_book_list_path %><br>
-
-  <% if @user.books.present? %>
-    <h3>Books you're currently reading:</h3>
-      <% @user.books_by_status("Currently reading").each do |book| %>
-        <%= link_to book.title, book_path(book) %><br>
-      <% end %>
-    <h3>Books you've already read:</h3>
-      <% @user.books_by_status("Already read").each do |book| %>
-        <%= link_to book.title, book_path(book) %><br>
-      <% end %>
-    <h3>Books you want to read:</h3>
-    <% @user.books_by_status("Want to read").each do |book| %>
-      <%= link_to book.title, book_path(book) %><br>
-    <% end %>
-  <% end %>
-
-  <h3>You Can also view all of the books, authors & genres in the Great Listby:</h3>
-    <%= link_to "All Books", books_path %><br><br>
-    <%= link_to "All Authors", authors_path %><br><br>
-    <%= link_to "All Genres", genres_path %><br><br><br><br>
-    <a href="/users/<%= @user.id %>/reviews">Your reviews<br><Br>
-  <%= link_to("Logout", destroy_user_session_path, method: :delete) %>
+    <h2> Welcome <%= @user.email %> </h2>
+    <%= render partial: '/home', locals: {user: @user} %>
 <% else %>
   <%= link_to('Log in with Facebook!', user_facebook_omniauth_authorize_path) %><br>
   <%= link_to("Sign Up", new_user_registration_path) %><br>

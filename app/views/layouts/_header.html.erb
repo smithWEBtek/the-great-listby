@@ -1,0 +1,12 @@
+<nav>
+  <center>
+    <h1>
+      <u> The Great Listby </ul>
+      </h1>
+        <%= link_to "All Books", books_path %> | <%= link_to "All Authors", authors_path %> | <%= link_to "All Genres", genres_path %>
+        <% if current_user %>
+        | <a href="/users/<%= @user.id %>/reviews">Your reviews</a> | <%= link_to "New Book List", new_book_list_path %>
+        <% end %>
+      <hr>
+  </center>
+</nav>
