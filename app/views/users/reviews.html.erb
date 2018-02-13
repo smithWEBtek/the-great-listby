@@ -1,7 +1,7 @@
 <h1>Reviews By You</h1>
 <% @user.reviews.each do |review| %>
   <strong>Book:</strong> <%= link_to review.book.title, book_path(review.book) %> ||
-  <strong>Title: </strong>"<%= review.title %>"</u></s> ||
+  <strong>Title: </strong>"<%= link_to review.title, book_review_path(review.book, review.id) %>"</u></s> ||
   <strong>Stars: </strong><%= review.rating %><br><br>
   <strong>Content:</strong> <%= review.content %><br><br><br>
 <% end %>
