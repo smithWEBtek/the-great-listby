@@ -28,9 +28,9 @@ class BookListsController < ApplicationController
 
   def update
     @booklist = BookList.find_by(id: params[:id])
+    authorize! :update, @booklist
     @booklist.update(book_list_params)
     update_book_features
-    authorize! :update, @booklist
     redirect_to book_list_path(@booklist)
   end
 
@@ -43,13 +43,7 @@ class BookListsController < ApplicationController
 
   private
    def book_list_params
-     params.require(:book_list).permit(
-       :title,
-       :user_id,
-       :book_ids => [],
-       :books_attributes => [:title, :genre, :author, :blurb],
-       :book_features => []
-     )
+     params.require(:book_list).permit(:title, :user_id, :book_ids => [], :books_attributes => [:title, :genre, :author, :blurb], :book_features => [])
    end
 
    def set_current_user
