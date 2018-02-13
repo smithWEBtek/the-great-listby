@@ -5,7 +5,11 @@ class Book < ApplicationRecord
   has_many :book_lists, :through => :book_features
   has_many :reviews
   has_many :users, :through => :reviews
+
   validates :title, presence: true
+  validates :author_id, presence: true
+  validates :genre_id, presence: true
+
   scope :highest_rated_books, -> { joins(:reviews).where('reviews.rating > 3') }
   scope :lowest_rated_books, -> { joins(:reviews).where('reviews.rating <= 3') }
   scope :by_user, ->(user) { joins(:reviews).where('reviews.user_id = ?', user.id ) }

@@ -13,11 +13,12 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = Book.create(book_params)
     if @book.save
       update_book_features
       redirect_to book_list_path(@booklist)
     else
+      @booklist = BookList.find_by(id: params[:book][:book_list_id])
       render :new
     end
   end
