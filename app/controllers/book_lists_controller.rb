@@ -26,6 +26,10 @@ class BookListsController < ApplicationController
     authorize! :read, @booklist
   end
 
+  def edit
+    @booklist = BookList.find_by(id: params[:id])
+  end
+
   def update
     @booklist = BookList.find_by(id: params[:id])
     authorize! :update, @booklist
