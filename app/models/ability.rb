@@ -15,8 +15,8 @@ class Ability
         can :update, Review, :user_id => user.id
         can :destroy, Review, :user_id => user.id
 
-        can :create, :books
-        can :update, :books
+        can :create, Book
+        can :update, Book
       end
     else
       can :read, :reviews

@@ -6,9 +6,9 @@ class BooksController < ApplicationController
   end
 
   def new
+    authorize! :create, Book
     @book = Book.new
     @booklist = BookList.find_by(id: params[:book_list_id])
-    @book.book_features.build
   end
 
   def create
@@ -32,6 +32,7 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find_by(id: params[:id])
+    authorize! :update, @book
     @book.update(book_params)
     update_book_features
     flash[:notice] = "Book status updated"
