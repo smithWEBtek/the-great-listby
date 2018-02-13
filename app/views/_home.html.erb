@@ -6,23 +6,28 @@
     <% end %>
   </ol>
 <% end %>
+
 <% if user.books.present? %>
+
   <h3>Books you're currently reading:</h3>
     <ol>
       <% user.books_by_status("Currently reading").each do |book| %>
         <li><%= link_to book.title, book_path(book) %></li>
       <% end %>
     </ol>
+
   <h3>Books you want to read:</h3>
     <ol>
       <% user.books_by_status("Want to read").each do |book| %>
         <li><%= link_to book.title, book_path(book) %></li>
       <% end %>
     </ol>
+
   <h3>Books you have already read:</h3>
     <ol>
       <% @user.books_by_status("Already read").each do |book| %>
         <li><%= link_to book.title, book_path(book) %></li>
       <% end %>
     </ol>
+
 <% end %>
