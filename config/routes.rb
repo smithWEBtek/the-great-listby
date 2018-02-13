@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#home'
   get '/users/:id/reviews' => "users#reviews"
-  get '/users/:id/unreadbooks' => "users#unread"
 
   resources :books do
     resources :reviews
