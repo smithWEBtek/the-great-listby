@@ -11,12 +11,12 @@
   <% end %>
 
   <h3>Your highest rated book(s):</h3>
-    <% Book.highest_rated_books.by_user(@user).each do |book| %>
+    <% user_highest_rated_books(@user).each do |book| %>
       <li><%= link_to book.title, book_path(book.id) %></li>
     <% end %>
 
   <h3>Your lowest rated book(s):</h3>
-    <% Book.lowest_rated_books.by_user(@user).each do |book| %>
+    <% user_lowest_rated_books(@user).each do |book| %>
     <li><%= link_to book.title, book_path(book.id) %></li>
     <% end %>
 
