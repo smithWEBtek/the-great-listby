@@ -9,6 +9,7 @@ class BooksController < ApplicationController
     authorize! :create, Book
     @book = Book.new
     @booklist = BookList.find_by(id: params[:book_list_id])
+    authorize! :update, @booklist
   end
 
   def create
@@ -28,6 +29,7 @@ class BooksController < ApplicationController
 
   def edit
     find_book_and_booklist
+    authorize! :update, @booklist
   end
 
   def update
