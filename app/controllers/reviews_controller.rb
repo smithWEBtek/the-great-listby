@@ -23,6 +23,7 @@ class ReviewsController < ApplicationController
     @review = Review.find_by(id: params[:id])
     @book = Book.find_by(id: params[:book_id])
     @user = current_user
+    authorize! :read, @review
   end
 
   def edit
