@@ -1,39 +1,8 @@
-<% if @book.errors.any? %>
-  <%= @book.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-<% end %>
+<%= render partial: 'errors', locals: {book: @book} %>
 
 <h2>Create A New Book To Add To "<%= @booklist.title %>"</h1>
-<%= form_for @book do |f| %>
-
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br><br>
-
-  <%= f.label "What's it about?" %><br>
-  <%= f.text_area :blurb %><br><br>
-
-  <%= f.label "Genre" %><br>
-  <%= f.text_field :genre_name %><br><br>
-
-  <%= f.label "Author" %><br>
-  <%= f.text_field :author_name %><br><br>
-
-  <%= f.label "Status" %><br>
-  <%= f.select :book_features, [["Currently reading"], ["Already read"], ["Want to read"]]%><br><br>
-
-  <%= f.hidden_field :book_list_id, :value => @booklist.id %>
-  <%= f.submit "Add this book to your booklist"%>
-<% end %>
+<%= render partial: 'form', locals: {book: @book, booklist: @booklist} %>
 <br>
 <hr>
 <h2>Add An Existing Book To "<%= @booklist.title %>"</h2>
-<%= form_for @booklist do |f| %>
-  <%= f.label "Select a book from the list below:" %><br>
-  <%= f.collection_check_boxes :book_ids, Book.all, :id, :title, :checked => false do |b|%>
-    <%= b.check_box %><%= b.label %><br>
-  <% end %><br>
-  <%= f.label "Status" %><br>
-  <%= f.select :book_features, [["Currently reading"], ["Already read"], ["Want to read"]]%><br><br>
-  <%= f.submit "Select this book"%>
-<% end %>
+<%= render partial: 'book_booklists', locals: {booklist: @booklist} %>

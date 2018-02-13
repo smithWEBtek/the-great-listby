@@ -1,6 +1,5 @@
 <h1>The Great Listby</h1>
 <h2>Books</h2>
-
 <ul>
 <% @books.each do |book| %>
   <li><%= link_to book.title, book_path(book)%>
