@@ -2,7 +2,7 @@ class BookListsController < ApplicationController
   before_action :set_current_user
 
   def index
-    authorize! :read, :book_lists
+    authorize! :read, BookList
     @booklists = current_user.book_lists
   end
 
