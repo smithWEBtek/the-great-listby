@@ -4,7 +4,6 @@
       <%= pluralize(booklist.errors.count, "error") %>
       prohibited this post from being saved:
     </h2>
-
     <ul>
     <%= booklist.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
