@@ -14,25 +14,25 @@ class User < ApplicationRecord
   end
 
   def books
-    books = []
-    @booklists = BookList.where(user_id: self.id).each do |booklist|
+    users_books = []
+    BookList.where(user_id: self.id).each do |booklist|
       booklist.books.each do |book|
-        books << book
+        users_books << book
       end
     end
-    books
+    users_books
   end
 
   def books_by_status(status)
-    array = []
-    books = self.books.each do |book|
+    books_by_status = []
+    self.books.each do |book|
       book.book_features.each do |book_feature|
         if book_feature.status == "#{status}"
-          array << Book.find_by(id: book_feature.book_id)
+          books_by_status << Book.find_by(id: book_feature.book_id)
         end
       end
     end
-    array
+    books_by_status
   end
 
 end
