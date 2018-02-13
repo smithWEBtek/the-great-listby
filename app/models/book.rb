@@ -7,9 +7,6 @@ class Book < ApplicationRecord
   has_many :users, :through => :reviews
 
   validates :title, presence: true
-  validates :title, uniqueness: true
-  validates :genre, presence: true
-  validates :author, presence: true
 
   scope :highest_rated_books, -> { joins(:reviews).where('reviews.rating > 3') }
   scope :lowest_rated_books, -> { joins(:reviews).where('reviews.rating < 3') }
