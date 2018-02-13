@@ -13,6 +13,7 @@ class BookListsController < ApplicationController
 
   def create
     @booklist = BookList.create(book_list_params)
+    authorize! :create, BookList
     if @booklist.save
       update_book_features
       redirect_to book_list_path(@booklist)
@@ -40,9 +41,9 @@ class BookListsController < ApplicationController
 
   def destroy
     @booklist = BookList.find_by(id: params[:id])
-    auhorize! :destroy, @booklist
+    authorize! :destroy, @booklist
     @booklist.destroy
-    redirect_to root_path
+    redirect_to book_lists_path
   end
 
   private
