@@ -10,9 +10,11 @@ class Ability
         can :read, BookList, :user_id => user.id
         can :update, BookList, :user_id => user.id
         can :destroy, BookList, :user_id => user.id
-        
-        can :manage, :book_lists, :user_id => user.id
-        can :manage, Review, :user_id => user.id
+
+        can :create, Review
+        can :update, Review, :user_id => user.id
+        can :destroy, Review, :user_id => user.id
+
         can :create, :books
         can :update, :books
       end
