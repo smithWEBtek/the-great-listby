@@ -6,7 +6,7 @@ class Ability
       if user.admin?
         can :manage, :all
       else
-        can :create, BookList
+        can :create, BookList, :user_id => user.id
         can :read, BookList, :user_id => user.id
         can :update, BookList, :user_id => user.id
         can :destroy, BookList, :user_id => user.id
