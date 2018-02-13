@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :book_lists do
-    resources :books
+    resources :books, only: [:create, :destroy, :new, :edit, :update]
   end
 
   resources :authors, only: [:index, :show]
