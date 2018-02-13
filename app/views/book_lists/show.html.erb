@@ -1,3 +1,4 @@
+<% if can? :read, @booklist %>
 <h1><%= @booklist.title %></h1>
 <strong><%= link_to "Add a book to this booklist", new_book_list_book_path(@booklist) %></strong>
 <% @booklist.books.each do |book| %>
@@ -10,3 +11,4 @@
 <% end %>
 <br><br><br><br>
 <%= link_to "Delete this entire booklist", book_list_path(@booklist.id), :method => "delete" %>
+<% end %>
