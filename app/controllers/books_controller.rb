@@ -1,4 +1,6 @@
 class BooksController < ApplicationController
+  before_action :set_current_user
+
   def index
     @books = Book.all
   end
@@ -6,7 +8,6 @@ class BooksController < ApplicationController
   def new
     @book = Book.new
     @booklist = BookList.find_by(id: params[:book_list_id])
-    @user = current_user
     @book.book_features.build
   end
 
@@ -26,27 +27,32 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find_by(id: params[:id])
-    @booklist = BookList.find_by(id: params[:book_list_id])
+    find_book_and_booklist
   end
 
   def update
     @book = Book.find_by(id: params[:id])
     @book.update(book_params)
     update_book_features
+    flash[:notice] = "Book status updated"
     redirect_to book_list_path(@booklist)
   end
 
   def destroy
-    @booklist = BookList.find_by(id: params[:book_list_id])
-    @book = Book.find_by(id: params[:id])
+    find_book_and_booklist
     @booklist.books.delete(@book.id)
+    flash[:notice] = "Book was deleted from your booklist"
     redirect_to book_list_path(@booklist)
   end
+
 
   private
     def book_params
       params.require(:book).permit(:book_list_id, :title, :blurb, :genre_name, :author_name, :book_features => [])
+    end
+
+    def set_current_user
+      @user = current_user
     end
 
     def update_book_features
@@ -55,4 +61,8 @@ class BooksController < ApplicationController
       @book_features.update_status(params[:book][:book_features])
     end
 
+    def find_book_and_booklist
+      @booklist = BookList.find_by(id: params[:book_list_id])
+      @book = Book.find_by(id: params[:id])
+    end
 end
