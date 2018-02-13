@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+div.field_with_errors {
+  display: inline;
+  border-bottom: 1px solid red;
+}
+
+div.error_explanation {
+  color: red;
+}
