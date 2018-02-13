@@ -1,4 +1,7 @@
-<center><h2>Reviews You Have Written</h2></center>
+<center>
+  <h2>Reviews You Have Written</h2>
+</center>
+
 <% if @user.reviews.present? %>
   <% @user.reviews.each do |review| %>
     <h3>Title: "<%= link_to review.title, book_review_path(review.book, review.id) %>"</h3>
@@ -18,5 +21,7 @@
     <% end %>
 
 <% else %>
-  <center>Looks like you haven't written any reviews yet.</center>
+  <center>
+    Looks like you haven't written any reviews yet.
+  </center>
 <% end %>
