@@ -25,7 +25,7 @@
 
   <h3>Books you have already read:</h3>
     <ol>
-      <% @user.books_by_status("Already read").each do |book| %>
+      <% user.books_by_status("Already read").each do |book| %>
         <li><%= link_to book.title, book_path(book) %></li>
       <% end %>
     </ol>
