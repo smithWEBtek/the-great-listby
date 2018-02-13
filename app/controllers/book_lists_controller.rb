@@ -2,10 +2,12 @@ class BookListsController < ApplicationController
   before_action :set_current_user
 
   def index
+    authorize! :read, :book_lists
     @booklists = current_user.book_lists
   end
 
   def new
+    authorize! :create, BookList
     @booklist = BookList.new
   end
 
@@ -28,11 +30,13 @@ class BookListsController < ApplicationController
     @booklist = BookList.find_by(id: params[:id])
     @booklist.update(book_list_params)
     update_book_features
+    authorize! :update, @booklist
     redirect_to book_list_path(@booklist)
   end
 
   def destroy
     @booklist = BookList.find_by(id: params[:id])
+    auhorize! :destroy, @booklist
     @booklist.destroy
     redirect_to root_path
   end
