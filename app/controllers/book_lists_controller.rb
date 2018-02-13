@@ -1,4 +1,5 @@
 class BookListsController < ApplicationController
+  before_action :set_current_user
 
   def index
     @booklists = current_user.book_lists
@@ -6,11 +7,9 @@ class BookListsController < ApplicationController
 
   def new
     @booklist = BookList.new
-    @user = current_user
   end
 
   def create
-    @user = current_user
     @booklist = BookList.create(book_list_params)
     if @booklist.save
       update_book_features
@@ -22,6 +21,7 @@ class BookListsController < ApplicationController
 
   def show
     @booklist = BookList.find_by(id: params[:id])
+    authorize! :read, @booklist
   end
 
   def update
@@ -43,13 +43,17 @@ class BookListsController < ApplicationController
        :title,
        :user_id,
        :book_ids => [],
-       :books_attributes => [:title, :genre, :author],
+       :books_attributes => [:title, :genre, :author, :blurb],
        :book_features => []
      )
    end
 
+   def set_current_user
+     @user = current_user
+   end
+
    def update_book_features
-     @book = Book.find_by(id: params[:book_list][:book_ids])
+     @book = Book.find_by(id: params[:book_list][:book_ids]) || @book = Book.find_by(id: @booklist.books.ids)
      @book_features = BookFeature.find_by(book_id: @book.id, book_list_id: @booklist.id)
      @book_features.update_status(params[:book_list][:book_features])
    end
