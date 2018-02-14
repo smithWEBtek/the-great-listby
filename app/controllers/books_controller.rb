@@ -49,7 +49,6 @@ class BooksController < ApplicationController
     redirect_to book_list_path(@booklist)
   end
 
-
   private
     def book_params
       params.require(:book).permit(:book_list_id, :title, :blurb, :genre_name, :author_name, :book_features => [])
