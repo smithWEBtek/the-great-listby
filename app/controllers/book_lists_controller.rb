@@ -56,7 +56,8 @@ class BookListsController < ApplicationController
    end
 
    def update_book_features
-     @book = Book.find_by(id: params[:book_list][:book_ids]) || @book = Book.find_by(id: @booklist.books.ids)
+     @book = Book.find_by(id: params[:book_list][:book_ids]) || @book = Book.find_by(id: @booklist.books.last.id)
+     binding.pry
       if @book
         @book_features = BookFeature.find_by(book_id: @book.id, book_list_id: @booklist.id)
         @book_features.update_status(params[:book_list][:book_features])
