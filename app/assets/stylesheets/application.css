@@ -18,3 +18,7 @@ div.field_with_errors {
   display: inline;
   border: 2px solid red;
 }
+
+div#flash_notice {
+  color: red;
+}

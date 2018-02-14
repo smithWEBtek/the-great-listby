@@ -41,6 +41,7 @@ class BooksController < ApplicationController
     if @booklist
       redirect_to book_list_path(@booklist)
     else
+      flash[:notice] = "You must select a book list"
       redirect_to book_path(@book.id)
     end
   end
