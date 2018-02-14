@@ -1,0 +1,4 @@
+<h2>Your Highest Rated Books</h1>
+<% @books.each do |book| %>
+  <li><%= link_to book.title, book_path(book.id) %></li>
+<% end %>
