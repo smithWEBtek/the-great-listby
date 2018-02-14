@@ -42,4 +42,15 @@ class Book < ApplicationRecord
       end
     end
   end
+
+  def book_list_ids=(ids)
+    ids.each do |id|
+      book_list = BookList.find_by(id: id)
+      if book_list
+        if !book_list.books.include?(self)
+          book_list.books << self
+        end
+      end
+    end
+  end
 end

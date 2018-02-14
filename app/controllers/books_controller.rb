@@ -51,7 +51,7 @@ class BooksController < ApplicationController
 
   private
     def book_params
-      params.require(:book).permit(:book_list_id, :title, :blurb, :genre_name, :author_name, :book_features => [])
+      params.require(:book).permit(:book_list_id, :title, :blurb, :genre_name, :author_name, :book_features => [], :book_list_ids => [])
     end
 
     def set_current_user
@@ -59,9 +59,11 @@ class BooksController < ApplicationController
     end
 
     def update_book_features
-      @booklist = BookList.find_by(id: params[:book][:book_list_id])
-      @book_features = BookFeature.find_by(book_id: @book.id, book_list_id: @booklist.id)
-      @book_features.update_status(params[:book][:book_features])
+      @booklist = BookList.find_by(id: params[:book][:book_list_id]) || @booklist = BookList.find_by(id: params[:book][:book_list_ids])
+      if @booklist
+        @book_features = BookFeature.find_by(book_id: @book.id, book_list_id: @booklist.id)
+        @book_features.update_status(params[:book][:book_features])
+      end
     end
 
     def find_book_and_booklist
