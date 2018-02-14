@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def reviews
-    @user = User.find_by(params[:id])
+    @user = User.find_by_id(params[:id])
     if @user == current_user
       @reviews = @user.reviews
       render 'users/reviews'
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def highest_rated_books
     @books = []
-    @user = User.find_by(params[:id])
+    @user = User.find_by_id(params[:id])
     if @user == current_user
       Book.highest_rated_books.by_user(@user).each do |book|
         @books << book
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def lowest_rated_books
     @books = []
-    @user = User.find_by(params[:id])
+    @user = User.find_by_id(params[:id])
     if @user == current_user
       Book.lowest_rated_books.by_user(@user).each do |book|
         @books << book
