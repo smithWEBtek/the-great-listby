@@ -22,3 +22,27 @@ div.field_with_errors {
 div#flash_notice {
   color: red;
 }
+
+body {
+  background: #2e7759;
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+  font-family: 'Goudy Bookletter 1911', serif;
+  font-size: 50px;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: black;
+}
+
+h2 {
+  font-weight: bold;
+}
