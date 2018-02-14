@@ -3,8 +3,8 @@
     <ol>
       <% user.book_lists.each do |book_list| %>
         <li><%= link_to book_list.title, book_list_path(book_list) %></li>
-    <% end %>
-  </ol>
+      <% end %>
+    </ol>
 <% end %>
 
 <% if user.books.present? %>

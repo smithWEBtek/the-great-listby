@@ -3,7 +3,9 @@
     <%= b.check_box %><%= b.label %><br>
   <% end %>
   <br>
+
   <%= f.label "Status " %><br>
   <%= f.select :book_features, [["Currently reading"], ["Already read"], ["Want to read"]]%><br><br>
+  
   <%= f.submit "Add to this booklist"%>
 <% end %>
