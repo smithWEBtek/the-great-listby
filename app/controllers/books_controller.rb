@@ -38,8 +38,11 @@ class BooksController < ApplicationController
     authorize! :update, @book
     @book.update(book_params)
     update_book_features
-    flash[:notice] = "Book status updated"
-    redirect_to book_list_path(@booklist)
+    if @booklist
+      redirect_to book_list_path(@booklist)
+    else
+      redirect_to book_path(@book.id)
+    end
   end
 
   def destroy
