@@ -8,9 +8,11 @@
     <% @booklists.each do |book_list| %>
       <%= link_to book_list.title, book_list_path(book_list) %><br>
     <% end %>
+<% end %>
 
-  <h3>Add it to one of your book lists:</h3>
-    <%= render partial: "booklistcollection", locals: {book: @book, user: @user} %>
+<% if current_user.book_lists.present? %>
+<h3>Add it to one of your book lists:</h3>
+  <%= render partial: "booklistcollection", locals: {book: @book, user: @user} %>
 <% end %>
 
 <% if @book.reviews.present? %>
