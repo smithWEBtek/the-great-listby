@@ -1,7 +1,7 @@
 <%= form_for booklist do |f| %>
 
   <%= f.label "Select a book from the list below:" %><br>
-  <%= f.collection_check_boxes :book_ids, Book.all, :id, :title, :checked => false do |b|%>
+  <%= f.collection_check_boxes :book_ids, Book.all, :id, :title, :checked => false, :include_hidden => false do |b|%>
     <%= b.check_box %><%= b.label %><br>
   <% end %><br>
 
