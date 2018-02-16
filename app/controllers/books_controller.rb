@@ -14,8 +14,9 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.create(book_params)
+    @booklist = BookList.find_by(id: params[:book][:book_list_id])
     if @book.save
-      update_book_features
+      update_book_statuses
       redirect_to book_list_path(@booklist)
     else
       @booklist = BookList.find_by(id: params[:book][:book_list_id])
@@ -31,25 +32,26 @@ class BooksController < ApplicationController
   end
 
   def edit
-    find_book_and_booklist
+    @book = Book.find_by(id: params[:id])
+    @booklist = BookList.find_by(id: params[:book_list_id])
     authorize! :update, @booklist
   end
 
   def update
     @book = Book.find_by(id: params[:id])
-    authorize! :update, @book
     @book.update(book_params)
-    update_book_features
-    if @booklist
+    update_book_statuses
+    if params[:book][:book_list_id].present?
+      @booklist = BookList.find_by(id: params[:book][:book_list_id])
       redirect_to book_list_path(@booklist)
     else
-      flash[:notice] = "You must select a book list"
       redirect_to book_path(@book.id)
     end
   end
 
   def destroy
-    find_book_and_booklist
+    @book = Book.find_by(id: params[:id])
+    @booklist = BookList.find_by(id: params[:book_list_id])
     @booklist.books.delete(@book.id)
     flash[:notice] = "Book was deleted from your booklist"
     redirect_to book_list_path(@booklist)
@@ -64,16 +66,13 @@ class BooksController < ApplicationController
       @user = current_user
     end
 
-    def update_book_features
-      @booklist = BookList.find_by(id: params[:book][:book_list_id]) || @booklist = BookList.find_by(id: params[:book][:book_list_ids])
-      if @booklist
-        @book_features = BookFeature.find_by(book_id: @book.id, book_list_id: @booklist.id)
-        @book_features.update_status(params[:book][:book_features])
+    def update_book_statuses
+      if params[:book][:book_list_ids].present?
+        @book.update_status(params[:book][:book_features], book_list_ids: params[:book][:book_list_ids])
       end
-    end
 
-    def find_book_and_booklist
-      @booklist = BookList.find_by(id: params[:book_list_id])
-      @book = Book.find_by(id: params[:id])
+      if params[:book][:book_list_id].present?
+        @book.update_status(params[:book][:book_features], book_list_id: params[:book][:book_list_id])
+      end
     end
 end
