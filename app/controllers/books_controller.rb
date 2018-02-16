@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :set_current_user
 
   def index
-    @books = Book.all
+    @books = Book.alphabatize
   end
 
   def new

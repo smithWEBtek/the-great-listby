@@ -13,6 +13,7 @@ class Book < ApplicationRecord
   scope :highest_rated_books, -> { joins(:reviews).where('reviews.rating > 3') }
   scope :lowest_rated_books, -> { joins(:reviews).where('reviews.rating <= 3') }
   scope :by_user, ->(user) { joins(:reviews).where('reviews.user_id = ?', user.id ) }
+  scope :alphabatize, -> { order('title asc') }
 
   def genre_name=(name)
     self.genre = Genre.find_or_create_by(name: name.titleize)

@@ -1,7 +1,7 @@
 class GenresController < ApplicationController
 
   def index
-    @genres = Genre.all
+    @genres = Genre.alphabatize
   end
 
   def show
