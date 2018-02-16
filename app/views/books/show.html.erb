@@ -18,7 +18,7 @@
 <% if @book.reviews.present? %>
   <h3>Reviews:</h3>
   <% @book.reviews.each do |review| %>
-    <%= link_to review.title, book_review_path(@book.id, review.id) %>
+    <li><%= link_to review.title, book_review_path(@book.id, review.id) %></li>
   <% end %>
 <% end %>
 
