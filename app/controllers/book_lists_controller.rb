@@ -15,7 +15,7 @@ class BookListsController < ApplicationController
     @booklist = BookList.create(book_list_params)
     authorize! :create, BookList
     if @booklist.save
-      update_book_features
+      update_book_statuses
       redirect_to book_list_path(@booklist)
     else
       render :new
@@ -35,7 +35,7 @@ class BookListsController < ApplicationController
     @booklist = BookList.find_by(id: params[:id])
     authorize! :update, @booklist
     @booklist.update(book_list_params)
-    update_book_features
+    update_book_statuses
     redirect_to book_list_path(@booklist)
   end
 
@@ -55,12 +55,17 @@ class BookListsController < ApplicationController
      @user = current_user
    end
 
-   def update_book_features
-        @book = Book.find_by(id: params[:book_list][:book_ids]) || @book = Book.find_by(title: params[:book_list][:books_attributes]["0"][:title])
-      if @book
-        @book_features = BookFeature.find_by(book_id: @book.id, book_list_id: @booklist.id)
-        @book_features.update_status(params[:book_list][:book_features])
+   def update_book_statuses
+    if params[:book_list][:book_ids].present?
+        params[:book_list][:book_ids].each do |book|
+          new_book = Book.find_by(id: book)
+          new_book.update_status(params[:book_list][:book_features], book_list_id: @booklist.id)
+      end
     end
-   end
 
+    if params[:book_list][:books_attributes].present? && !params[:book_list][:books_attributes]["0"][:title].empty?
+      book = Book.find_by(title: params[:book_list][:books_attributes]["0"][:title].titleize)
+      book.update_status(params[:book_list][:book_features], book_list_id: @booklist.id)
+    end
+  end
 end
