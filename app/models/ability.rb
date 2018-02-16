@@ -17,6 +17,10 @@ class Ability
 
         can :create, Book
         can :update, Book
+
+        can :show_reviews_for, User, :id => user.id
+        can :show_highest_rated_books_for, User, :id => user.id
+        can :show_lowest_rated_books_for, User, :id => user.id
       end
     else
       can :read, :reviews
