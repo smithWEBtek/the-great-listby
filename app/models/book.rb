@@ -53,4 +53,19 @@ class Book < ApplicationRecord
       end
     end
   end
+
+  def update_status(status, book_list_id: nil, book_list_ids: nil)
+    if book_list_id != nil
+      book_feature = BookFeature.find_by(book_id: self.id, book_list_id: book_list_id)
+      book_feature.update_columns(status: status)
+    end
+
+    if book_list_ids != nil
+      book_list_ids.each do |book_list|
+        new_book_list = BookList.find_by(id: book_list)
+        book_feature = BookFeature.find_by(book_id: self.id, book_list_id: new_book_list.id)
+        book_feature.update_columns(status: status)
+      end
+    end
+  end
 end
