@@ -36,20 +36,16 @@ class Book < ApplicationRecord
 
   def book_list_id=(id)
     book_list = BookList.find_by(id: id)
-    if book_list
-      if !self.book_lists.include?(book_list)
-        self.book_lists << book_list
-      end
+    if !self.book_lists.include?(book_list)
+      self.book_lists << book_list
     end
   end
 
   def book_list_ids=(ids)
     ids.each do |id|
       book_list = BookList.find_by(id: id)
-      if book_list
-        if !book_list.books.include?(self)
-          book_list.books << self
-        end
+      if !book_list.books.include?(self)
+        book_list.books << self
       end
     end
   end
