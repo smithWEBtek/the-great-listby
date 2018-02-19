@@ -8,7 +8,7 @@ This is a free Ruby on Rails application for managing book lists.
 2. CD into the application<br>
 3. Make sure to run 'bundle install' to install all required gem dependencies<br>
 4. Run 'rake db:migrate'<br>
-4. Run 'rails s' and navigate to the localhost port displayed in your terminal.<br>
+5. Run 'rails s' and navigate to the localhost port displayed in your terminal.<br>
 
 <h3> Contributors  </h3>
 Thank you for taking an interest in contributing to The Great Listby.  To contribute please:<br>
