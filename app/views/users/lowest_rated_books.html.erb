@@ -1,4 +1,2 @@
 <h2>Your Lowest Rated Books</h2>
-<% @books.each do |book| %>
-  <li><%= link_to book.title, book_path(book.id) %></li>
-<% end %>
+<%= render partial: "book_collection", locals: {books: @books} %>
