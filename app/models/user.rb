@@ -16,8 +16,8 @@ class User < ApplicationRecord
   def books
     users_books = []
     BookList.where(user_id: self.id).each do |booklist|
-      booklist.books.each do |book|
-        users_books << book
+        booklist.books.each do |book|
+          users_books << book
       end
     end
     users_books
@@ -25,13 +25,11 @@ class User < ApplicationRecord
 
   def books_by_status(status)
     books_by_status = []
-    self.books.each do |book|
-      book.book_features.each do |book_feature|
-        if book_feature.status == "#{status}"
-          new_book = Book.find_by(id: book_feature.book_id)
-          if !books_by_status.include?(new_book)
-            books_by_status << new_book
-          end
+    BookList.where(user_id: self.id).each do |booklist|
+      BookFeature.where(book_list_id: booklist.id).each do |book|
+        if book.status == "#{status}"
+          new_book = Book.find_by(id: book.book_id)
+          books_by_status << new_book
         end
       end
     end
