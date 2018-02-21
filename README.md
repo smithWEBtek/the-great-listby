@@ -7,7 +7,11 @@ This is a free Ruby on Rails application for managing book lists.
 1. Fork this repository & clone into it from your terminal<br>
 2. CD into the application<br>
 3. Make sure to run 'bundle install' to install all required gem dependencies<br>
+<<<<<<< HEAD
 4. Run 'rake db:migrate'
+=======
+4. Run 'rake db:migrate'<br>
+>>>>>>> 79f38179c609d7afca88727affe8374fd854a93b
 5. Run 'rails s' and navigate to the localhost port displayed in your terminal.<br>
 
 <h3> Contributors  </h3>
