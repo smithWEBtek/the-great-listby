@@ -1,4 +1,4 @@
-<%= render partial: 'errors', locals: {booklist: @booklist} %>
+<%= render partial: 'layouts/errors', locals: {object: @booklist} %>
 
 <h1>Edit <%= @booklist.title %></h1>
 <%= render partial: 'form', locals: {booklist: @booklist, user: @user} %>

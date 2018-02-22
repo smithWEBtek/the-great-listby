@@ -1,4 +1,4 @@
-<%= render partial: 'errors', locals: {review: @review} %>
+<%= render partial: 'layouts/errors', locals: {object: @review} %>
 
 <h1>Edit Review for <%= @book.title %></h1>
 <%= render partial: "form", locals: {book: @book, review: @review, user: @user} %>
