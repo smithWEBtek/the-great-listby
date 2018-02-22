@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to book_review_path(params[:book_id], @review.id)
     else
+      @book = Book.find_by(id: params[:book_id])
       render :new
     end
   end
