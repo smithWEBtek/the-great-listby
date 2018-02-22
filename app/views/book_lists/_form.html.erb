@@ -4,7 +4,7 @@
 <%= f.text_field :title %><br><br>
 
 Select a book to add to this book list:<br><br>
-<%= f.collection_check_boxes :book_ids, Book.all, :id, :title, :checked => false, :include_hidden => false do |b| %>
+<%= f.collection_check_boxes :book_ids, Book.alphabatize, :id, :title, :checked => false, :include_hidden => false do |b| %>
   <%= b.check_box %><%= b.label %><br>
 <% end %><br>
 
