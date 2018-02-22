@@ -60,12 +60,12 @@ class BookListsController < ApplicationController
         params[:book_list][:book_ids].each do |book|
           new_book = Book.find_by(id: book)
           new_book.update_status(params[:book_list][:book_features], book_list_id: @booklist.id)
+        end
       end
-    end
-
     if params[:book_list][:books_attributes].present? && !params[:book_list][:books_attributes]["0"][:title].empty?
       book = Book.find_by(title: params[:book_list][:books_attributes]["0"][:title].titleize)
       book.update_status(params[:book_list][:book_features], book_list_id: @booklist.id)
     end
   end
+
 end
