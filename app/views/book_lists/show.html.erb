@@ -11,6 +11,7 @@
     <h3> Title: <%= link_to book.title.titleize, book_path(book) %><br></h3>
     Author: <%= link_to book.author.name, author_path(book.author) %><br>
     Genre: <%= link_to book.genre.name, genre_path(book.genre) %><br>
+    Blurb: <%= book.blurb %><br>
     Status: <%= book.book_features.find_by(book_id: book.id, book_list_id: @booklist.id).status %><br><br>
     <strong>
       <%= link_to "Add A Review", new_book_review_path(book.id) %><br>
