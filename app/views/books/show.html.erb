@@ -10,7 +10,7 @@
     <% end %>
 <% end %>
 
-<% if current_user.book_lists.present? %>
+<% if current_user && current_user.book_lists.present? %>
 <h3>Add it to one of your book lists:</h3>
   <%= render partial: "booklistcollection", locals: {book: @book, user: @user} %>
 <% end %>
