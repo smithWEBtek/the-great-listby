@@ -1,2 +1,6 @@
 <h2>Books</h2>
-<%= render partial: "users/book_collection", locals: {books: @books} %>
+<ul>
+  <% @books.each do |book| %>
+    <li><%= link_to book.title, book_path(book.id) %></li>
+<% end %>
+</ul>
