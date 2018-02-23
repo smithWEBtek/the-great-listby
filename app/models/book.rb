@@ -7,6 +7,7 @@ class Book < ApplicationRecord
   has_many :users, :through => :reviews
 
   validates :title, presence: true
+  validates :title, uniqueness: true
   validates :author_id, presence: true
   validates :genre_id, presence: true
   before_validation :make_title_case
