@@ -27,7 +27,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find_by(id: params[:id])
     if current_user
-      @booklists = @book.book_lists.where(user_id: current_user.id)
+      @book_on_booklist = @book.book_lists.where(user_id: current_user.id)
     end
   end
 
