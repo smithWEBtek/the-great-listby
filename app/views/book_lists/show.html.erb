@@ -1,20 +1,11 @@
-<center>
-  <h1>"<%= @booklist.title %>"</h1>
-    <strong>
-      <%= link_to "Add a book to this booklist", new_book_list_book_path(@booklist) %><br>
-      <%= link_to "Edit this booklist", edit_book_list_path(@booklist) %><br>
-      <%= link_to "Delete this entire booklist", book_list_path(@booklist.id), :method => "delete" %>
-    </strong>
-</center>
+<%= render partial: 'header', locals: {booklist: @booklist} %>
+
 <% @booklist.books.each do |book| %>
   <hr>
     <h3> Title: <%= link_to book.title.titleize, book_path(book) %><br></h3>
     Author: <%= link_to book.author.name, author_path(book.author) %><br>
     Genre: <%= link_to book.genre.name, genre_path(book.genre) %><br>
     Status: <%= book.book_features.find_by(book_list_id: @booklist.id).status %><br><br>
-    <strong>
-      <%= link_to "Add A Review", new_book_review_path(book.id) %><br>
-      <%= link_to "Update Status", edit_book_list_book_path(@booklist.id, book.id) %><br>
-      <%= link_to "Delete from booklist", book_list_book_path(@booklist.id, book.id), :method => "delete" %>
-    </strong>
+
+    <%= render partial: 'footer', locals: {booklist: @booklist, book: book} %>
 <% end %>
