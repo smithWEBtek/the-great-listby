@@ -9,14 +9,19 @@ class Book < ApplicationRecord
   validates :title, presence: true
   validates :author_id, presence: true
   validates :genre_id, presence: true
+  before_validation :make_title_case
 
   scope :highest_rated_books, -> { joins(:reviews).where('reviews.rating > 3') }
   scope :lowest_rated_books, -> { joins(:reviews).where('reviews.rating <= 3') }
   scope :by_user, ->(user) { joins(:reviews).where('reviews.user_id = ?', user.id ) }
   scope :alphabatize, -> { order('title asc') }
 
+  def make_title_case
+    self.title = self.title.titlecase
+  end
+
   def genre_name=(name)
-    self.genre = Genre.find_or_create_by(name: name.titleize)
+    self.genre = Genre.find_or_create_by(name: name)
   end
 
   def genre_name
@@ -26,7 +31,7 @@ class Book < ApplicationRecord
   end
 
   def author_name=(name)
-    self.author = Author.find_or_create_by(name: name.titleize)
+    self.author = Author.find_or_create_by(name: name)
   end
 
   def author_name
