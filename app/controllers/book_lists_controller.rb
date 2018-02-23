@@ -48,7 +48,7 @@ class BookListsController < ApplicationController
 
   private
    def book_list_params
-     params.require(:book_list).permit(:title, :user_id, :book_ids => [], :books_attributes => [:title, :genre, :author, :blurb], :book_features => [])
+     params.require(:book_list).permit(:title, :user_id, :book_ids => [], :books_attributes => [:title, :genre, :author], :book_features => [])
    end
 
    def set_current_user

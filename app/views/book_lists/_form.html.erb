@@ -11,7 +11,6 @@ Select a book to add to this book list:<br><br>
 Create a book to add to this book list:<br><br>
 <%= f.fields_for :books, booklist.books.build do |book_fields| %>
   Title:<br><%= book_fields.text_field :title %><br><br>
-  Blurb:<br><%= book_fields.text_area :blurb %><br><br>
   Author:<br><%= book_fields.text_field :author %><br><br>
   Genre:<br><%= book_fields.text_field :genre %><br><br>
 <% end %>
