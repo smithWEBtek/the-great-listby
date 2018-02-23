@@ -6,7 +6,7 @@
     <ol>
       <% book_list.books.each do |book| %>
         <li><%= link_to book.title, book_path(book) %></li>
-        Status: <%= book.book_features.find_by(book_id: book.id, book_list_id: book_list.id).status %><br><br>
+        Status: <%= book.book_features.find_by(book_list_id: book_list.id).status %><br><br>
       <% end %>
     </ol>
   <% end %>
