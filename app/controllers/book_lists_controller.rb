@@ -63,7 +63,7 @@ class BookListsController < ApplicationController
         end
       end
     if params[:book_list][:books_attributes].present? && !params[:book_list][:books_attributes]["0"][:title].empty?
-      book = Book.find_by(title: params[:book_list][:books_attributes]["0"][:title])
+      book = Book.find_by(title: params[:book_list][:books_attributes]["0"][:title].titleize)
       book.update_status(params[:book_list][:book_features], book_list_id: @booklist.id)
     end
   end
