@@ -15,7 +15,4 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to root_path
   end
 
-  #def login
-  #redirect user_auth0_omniauth_authorize_path
-  #end
 end
