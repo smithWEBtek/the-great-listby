@@ -1,4 +1,8 @@
 <h2>Books</h2>
+<%= form_tag(books_path, method: :get) do %>
+  <%= text_field_tag :term, params[:term] %><br>
+  <%= submit_tag 'Search For A Book By Title', name: nil %>
+<% end %>
 <ul>
   <% @books.each do |book| %>
     <li><%= link_to book.title, book_path(book.id) %></li>

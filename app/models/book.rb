@@ -17,6 +17,10 @@ class Book < ApplicationRecord
   scope :by_user, ->(user) { joins(:reviews).where('reviews.user_id = ?', user.id ) }
   scope :alphabatize, -> { order('title asc') }
 
+  def self.search(term)
+    self.find_by(title: term.titlecase)
+  end
+
   def make_title_case
     self.title = self.title.titlecase
   end
